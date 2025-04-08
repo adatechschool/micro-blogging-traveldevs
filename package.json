@@ -19,10 +19,12 @@
   "homepage": "https://github.com/adatechschool/micro-blogging-traveldevs#readme",
   "dependencies": {
     "@prisma/client": "^6.5.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^5.1.0",
     "nodemon": "^3.1.9",
     "prisma": "^6.5.0",
     "pug": "^3.0.3"
-  }
+  },
+  "type": "module"
 }
