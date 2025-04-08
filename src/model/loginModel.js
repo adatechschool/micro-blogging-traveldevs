@@ -1,9 +1,9 @@
-const { PrismaClient } = require('@prisma/client');
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient({
     log: ["query"]
 });
 
-const LoginModel = {
+export const LoginModel = {
     login: async (data) => {
         try {
             const user = await prisma.users.findFirst({
@@ -32,6 +32,3 @@ const LoginModel = {
         }
     }
 };
-
-// Remplacer l'export `export const LoginModel` par `module.exports`
-module.exports = { LoginModel };  // On utilise `module.exports` pour exposer l'objet `LoginModel`
