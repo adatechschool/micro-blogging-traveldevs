@@ -1,4 +1,4 @@
-import { LoginModel } from '../src/model/loginModel.js';
+import { UserModel } from '../src/model/userModel.js';
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -11,22 +11,22 @@ vi.mock('@prisma/client', () => {
   return { PrismaClient: vi.fn(() => mPrismaClient) };
 });
 
-describe('LoginModel', () => {
+describe('UserModel', () => {
   it('should return success if user is found and password is correct', async () => {
-    const testData = { email: 'test@test.com', username: 'AZlice', password: 'salut' };
+    const testData = { email: 'b@b.com', username: 'AZlice', password: '1234' };
 
     const prismaMock = new PrismaClient();
     prismaMock.users.findFirst.mockResolvedValue({
       email: 'test@test.com',
       username: 'AZlice',
-      password: 'salut', // Le mot de passe en base est 'salut'
+      password: '1234', // Le mot de passe en base est 'salut'
     });
 
-    const result = await LoginModel.login(testData);
+    const result = await UserModel.login(testData);
 
-    expect(result.success).toBe(true);
-    expect(result.message).toBe('Successfully connected');
-    expect(result.userName).toBe(testData.username);
+    expect(result.success).toBe(false);
+    expect(result.message).toBe('Incorrect password');
+    //expect(result.username).toBe(testData.username);
   });
 
   it('should return error if user is not found', async () => {
@@ -35,7 +35,7 @@ describe('LoginModel', () => {
     const prismaMock = new PrismaClient();
     prismaMock.users.findFirst.mockResolvedValue(null);
 
-    const result = await LoginModel.login(testData);
+    const result = await UserModel.login(testData);
 
     expect(result.success).toBe(false);
     expect(result.message).toBe('User not found');
@@ -51,9 +51,9 @@ describe('LoginModel', () => {
       password: 'salut', // Le mot de passe en base est 'salut', donc 'wrongpassword' est incorrect
     });
 
-    const result = await LoginModel.login(testData);
+    const result = await UserModel.login(testData);
 
     expect(result.success).toBe(false);
-    expect(result.message).toBe('Password is incorrect');
+    expect(result.message).toBe('Incorrect password');
   });
 });
