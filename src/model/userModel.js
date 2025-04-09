@@ -21,11 +21,11 @@ export const UserModel = {
             if (!user) {
                 return { success: false, message: "User not found" };
             }
-
-            if (await PasswordUtils.verifyPassword(data.password, user.password)) {
-                return { success: false, message: "Incorrect password"};
-            } else {
-                return {success: true, message: "Succesfully connected!"};
+            switch (await PasswordUtils.verifyPassword(data.password, user.password)) {
+                case true:
+                    return {success: true, message: "Succesfully connected!"};
+                case false:
+                    return { success: false, message: "Incorrect password"};
             }
 
         } catch (error) {

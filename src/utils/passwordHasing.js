@@ -14,13 +14,11 @@ export const PasswordUtils = {
 
     verifyPassword: async (enteredPassword, truePassword) => {
         try {
-            console.log(enteredPassword, truePassword);
-            
-            const validPassword = await bcrypt.compare(enteredPassword, truePassword);
-            console.log(validPassword);
-            
-            if (!validPassword) {
-                return {connected: false};
+            switch (await bcrypt.compare(enteredPassword, truePassword)) {
+                case true:
+                    return true
+                case false:
+                    return false
             }
         } catch (error) {
             console.error(error);
