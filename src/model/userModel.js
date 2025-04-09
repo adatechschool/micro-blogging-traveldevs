@@ -1,4 +1,3 @@
-import { user } from '../routes/userRoute.js';
 import { PasswordUtils } from '../utils/passwordHasing.js';
 import { PrismaClient } from '@prisma/client';
 
@@ -23,7 +22,7 @@ export const UserModel = {
                 return { success: false, message: "User not found" };
             }
 
-            if (!await PasswordUtils.verifyPassword(data.password, user.password)) {
+            if (await PasswordUtils.verifyPassword(data.password, user.password)) {
                 return { success: false, message: "Incorrect password"};
             } else {
                 return {success: true, message: "Succesfully connected!"};
@@ -34,9 +33,32 @@ export const UserModel = {
         }
     },
 
-    findById: async (id) => {},
+    findById: async (id) => {
+        try {
+            const result = await prisma.users.findUnique({
+                where: {
+                    id: id
+                }
+            });
 
-    findAll: async () => {},
+            if (!result) {
+                res.json({success: false, message: "Unable to find user"});
+            } else {
+                return result;
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    },
+
+    findAll: async () => {
+        try {
+            return await prisma.users.findMany();
+        } catch (error) {
+            console.error(error);
+        }
+    },
 
     create: async (data) => {
         try {
@@ -57,10 +79,11 @@ export const UserModel = {
 
     update: async (data) => {
         try {
+            const id = parseInt(data.id)
             const hashedPassword = await PasswordUtils.hashPassword(data.password);
             const result = await prisma.users.update({
                 where: {
-                    id: data.id
+                    id: id
                 },
                 data: {
                     username: data.username,
@@ -77,9 +100,14 @@ export const UserModel = {
         }
     },
 
-    delete: async (userid) => {
-        try {
-            const query = await prisma.users.delete(userid);
+    delete: async (userId) => {
+        try {            
+            const id = parseInt(userId)
+            const query = await prisma.users.delete({
+                where: {
+                    id: id
+                }
+            });
             
             if (!query) {
                 res.json({success: false, message: "Unable to delete user"});

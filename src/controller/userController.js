@@ -8,9 +8,21 @@ export const UserController = {
             console.error(error);
         }
     },
-    getUserById: async () => {},
+    getUserById: async (id) => {
+        try {
+            return await UserModel.findById(id);
+        } catch (error) {
+            console.error(error);
+        }
+    },
 
-    getAllusers: async () => {},
+    getAllusers: async () => {
+        try {
+            return await UserModel.findAll();
+        } catch (error) {
+            console.error(error);
+        }
+    },
 
     createUser: async (data) => {
         try {
@@ -20,7 +32,19 @@ export const UserController = {
         }
     },
 
-    updateUser: async () => {},
+    updateUser: async (data) => {
+        try {
+            return await UserModel.update(data)
+        } catch (error) {
+            console.error(error);
+        }
+    },
     
-    deleteUser: async () => {}
+    deleteUser: async (id) => {
+        try {
+            return await UserModel.delete(id);
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }

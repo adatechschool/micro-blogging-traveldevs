@@ -2,31 +2,45 @@ import { UserController } from '../controller/userController.js';
 import express from 'express';
 const router = express.Router();
 
-router.post('/user/login', async (req, res) => {
+router.get('/users', async (req, res) => {
     try {
-        const message = await UserController.login(req.body);
-        
-        if (!message.success) {
-            res.json(message);
+        if (req.query.id) {
+            res.json(await UserController.getUserById(req.query.id));
         } else {
-            res.json(message);
+            res.json(await UserController.getAllusers());
         }
-
     } catch (error) {
         console.error(error);
     }
 });
 
-router.post("/user/signup", async(req, res) => {
+router.post("/users/create", async(req, res) => {
     try {
-        const message = await UserController.createUser(req.body);
-        
-        if (!message.success) {
-            res.json(message);
-        } else {
-            res.json(message)
-        }
+        res.json(await UserController.createUser(req.body));
+    } catch (error) {
+        console.error(error);
+    }
+});
 
+router.post('/users/login', async (req, res) => {
+    try {
+        res.json(await UserController.login(req.body));
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.put('/users/update', async (req, res) => {
+    try {
+        res.json(await UserController.updateUser(req.body));
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+router.delete('/users/delete', async (req, res) => {
+    try {
+        res.json(await UserController.deleteUser(req.query.id));
     } catch (error) {
         console.error(error);
     }
