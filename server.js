@@ -9,9 +9,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(cors());
-<<<<<<< HEAD
 app.use(login);
-=======
 
 console.log(prisma);
 
@@ -38,7 +36,6 @@ app.post("/signup", async(req, res) => {
     res.json(result)
 })
 //app.post("/signup", postInscription)
->>>>>>> f5b8142 (add post inscription)
 
 app.listen(process.env.PORT_SERVER, () => {
     console.log(`Server running on http://localhost:${process.env.PORT_SERVER}`);
