@@ -2,8 +2,9 @@ import { PrismaClient } from '@prisma/client';
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import { hashSync } from "bcrypt";
 
-const prisma = new PrismaClient();
+export const prisma = new PrismaClient();
 const app = express();
 dotenv.config();
 
@@ -12,11 +13,30 @@ app.use(cors());
 
 // const newUser = await prisma.users.create({
 //     data: {
-//         username: 'AZlice',
-//         email: 'test@test.com',
-//         password: '123456',
-//         profile_picture: "test.com" 
+//         username: 'Majda',
+//         email: 'majda@test.com',
+//         password: 'olalala',
+//         profile_picture: "oui" 
 //     }
+// })
+
+// console.log(newUser)
+
+// app.post('/signup', async (req, res) => {
+//     const {username, email, password} = req.body;
+
+//     let user = await prisma.users.findFirst({where: {email}})
+//     if (user){
+//         throw Error ('L\'utilisateur existe déja')
+//     }
+//     user = await prisma.users.create({
+//         data:{
+//             username,
+//             email,
+//             password:hashSync(password,10)
+//         }
+//     })
+//     res.json(user)
 // })
 
 app.listen(process.env.PORT_SERVER, () => {
