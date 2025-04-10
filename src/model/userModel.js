@@ -79,7 +79,7 @@ export const UserModel = {
 
     update: async (data) => {
         try {
-            const id = parseInt(data.id)
+            const id = parseInt(data.id);
             const hashedPassword = await PasswordUtils.hashPassword(data.password);
             const result = await prisma.users.update({
                 where: {
@@ -93,7 +93,7 @@ export const UserModel = {
             });
 
             if (!result) {
-                res.json({success: false, message: ""})
+                res.json({success: false, message: ""});
             }
         } catch (error) {
             console.error(error);

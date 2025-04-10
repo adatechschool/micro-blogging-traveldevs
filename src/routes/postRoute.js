@@ -1,16 +1,16 @@
-import express from 'express';
-import prisma from '../utils/prismaClient.js';
+import { PostController} from "../controller/postController.js";
+import { PostControllers  } from "../controller/test.js";
+
+import express from "express"
+
 const router = express.Router();
 
-import { PostController } from '../controller/postController.js';
+// const controller = new PostControllers();
 
-router.get('/post', async(req,res) => {
-    try {
-        const result = PostController.getAllPosts()
-        res.json(result)
-    } catch (error) {
-        
-    }
-})
-export { router as post }
+// router.get("/posts", controller.getAllPosts);
+router.get('/posts', PostController.getAllPosts())
+// router.post("/posts/:id", PostController.createPost());
 
+// router.post("/posts/update/:id", PostController.updatePost());
+
+export { router as posts };

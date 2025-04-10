@@ -9,12 +9,10 @@ datasource db {
 }
 
 model posts {
-  id       Int     @id @default(autoincrement())
-  title    String? @db.VarChar(50)
-  content  String? @db.VarChar
-  like     Int?
-  comments String? @db.VarChar
-  user_id  Int?
+  id      Int     @id @default(autoincrement())
+  title   String? @db.VarChar(50)
+  content String? @db.VarChar
+  user_id Int?
 }
 
 model users {
