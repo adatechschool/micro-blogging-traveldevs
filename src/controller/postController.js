@@ -48,8 +48,8 @@ export const PostController =  {
     // }
 }
 
-// export const getAllPosts = async (req,res) => {
-//     return res.json(await PostModel.findAll());
-// }
+export const getAllPosts = async (req,res) => {
+    return res.json(await PostModel.findAll());
+}
 
 

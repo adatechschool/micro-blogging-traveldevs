@@ -1,4 +1,5 @@
 import { PostModel } from "../model/postModel.js";
+
 export class PostControllers {
     constructor(){
         // req = this.req;
