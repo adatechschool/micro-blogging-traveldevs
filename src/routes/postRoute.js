@@ -1,16 +1,17 @@
-import { PostController, getAllPosts} from "../controller/postController.js";
-import { PostControllers  } from "../controller/test.js";
+import { PostController } from "../controller/postController.js";
+
+// import { PostControllers  } from "../controller/test.js";
 
 import express from "express"
 
 const router = express.Router();
 
-const controller = new PostControllers();
+// const controller = new PostControllers();
 
-router.get("/posts", controller.getAllPosts);
-// router.get('/posts', PostController.getAllPosts())
+// router.get("/posts", controller.getAllPosts);
+router.get('/posts', PostController.getAllPosts)
 // router.post("/posts/:id", PostController.createPost());
-router.get('/posts', getAllPosts)
+// router.get('/posts', getAllPosts)
 // router.post("/posts/:id", PostController.createPost);
 // router.post("/posts/update/:id", PostController.updatePost());
 // bonjour

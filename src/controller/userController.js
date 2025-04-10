@@ -1,4 +1,5 @@
 import { UserModel } from "../model/userModel.js";
+import { UserView } from "../views/userView.js";
 
 export const UserController = {
     login: async (data) => {
