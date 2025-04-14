@@ -1,4 +1,4 @@
-import { PostController } from "../controller/postController.js";
+import { PostController } from "../controllers/postController.js";
 
 // import { PostControllers  } from "../controller/test.js";
 
