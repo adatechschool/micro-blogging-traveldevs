@@ -1,0 +1,23 @@
+doctype html
+html
+  head
+    title Sign In
+    //link(rel="stylesheet", href="/styles/style.css")   // Lien vers le fichier CSS
+    script(src="../../main.js")                      // Lien vers le fichier JavaScript
+  body
+    .left-side
+    .right-side
+      h1 Sign In
+      .input-container
+        input(type="text" placeholder="Username or Email" id="username")
+      .input-container
+        input(type="password" placeholder="Password" id="password")
+      .remember-forgot
+        label
+          input(type="checkbox" id="rememberMe")
+          Remember me
+        a(href="#") Forgot password?
+      button(type="submit" class="sign-in-btn" id="signInBtn") Sign In
+      .create-account
+        p New here? 
+        a(href="#") Create an account
