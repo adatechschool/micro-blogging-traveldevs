@@ -1,59 +1,89 @@
-import { UserModel } from '../src/model/userModel.js';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { UserModel } from '../src/models/userModel.js';
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
 
 vi.mock('@prisma/client', () => {
-  const mPrismaClient = {
+  const mockPrisma = {
     users: {
-      findFirst: vi.fn(),
+      findUnique: vi.fn(),
+      findMany: vi.fn(),
+      create: vi.fn(),
+      update: vi.fn(),
+      delete: vi.fn(),
     },
   };
-  return { PrismaClient: vi.fn(() => mPrismaClient) };
+
+  return {
+    PrismaClient: vi.fn(() => mockPrisma),
+  };
 });
 
 describe('UserModel', () => {
-  it('should return success if user is found and password is correct', async () => {
-    const testData = { email: 'b@b.com', username: 'AZlice', password: '1234' };
+  let prismaMock;
 
-    const prismaMock = new PrismaClient();
-    prismaMock.users.findFirst.mockResolvedValue({
-      email: 'test@test.com',
-      username: 'AZlice',
-      password: '1234', // Le mot de passe en base est 'salut'
-    });
-
-    const result = await UserModel.login(testData);
-
-    expect(result.success).toBe(false);
-    expect(result.message).toBe('Incorrect password');
-    //expect(result.username).toBe(testData.username);
+  beforeEach(() => {
+    prismaMock = new PrismaClient();
+    vi.clearAllMocks();
   });
 
-  it('should return error if user is not found', async () => {
-    const testData = { email: 'unknown@test.com', username: 'UnknownUser', password: 'salut' };
+  it('should find user by ID', async () => {
+    const mockUser = { id: 1, username: 'Alice' };
+    prismaMock.users.findUnique.mockResolvedValue(mockUser);
 
-    const prismaMock = new PrismaClient();
-    prismaMock.users.findFirst.mockResolvedValue(null);
+    const result = await UserModel.findById(1);
 
-    const result = await UserModel.login(testData);
-
-    expect(result.success).toBe(false);
-    expect(result.message).toBe('User not found');
+    expect(result).toEqual(mockUser);
+    expect(prismaMock.users.findUnique).toHaveBeenCalledWith({ where: { id: 1 } });
   });
 
-  it('should return error if password is incorrect', async () => {
-    const testData = { email: 'test@test.com', username: 'AZlice', password: 'wrongpassword' };
+  it('should return all users', async () => {
+    const mockUsers = [{ id: 1 }, { id: 2 }];
+    prismaMock.users.findMany.mockResolvedValue(mockUsers);
 
-    const prismaMock = new PrismaClient();
-    prismaMock.users.findFirst.mockResolvedValue({
-      email: 'test@test.com',
-      username: 'AZlice',
-      password: 'salut', // Le mot de passe en base est 'salut', donc 'wrongpassword' est incorrect
-    });
+    const result = await UserModel.findAll();
 
-    const result = await UserModel.login(testData);
-
-    expect(result.success).toBe(false);
-    expect(result.message).toBe('Incorrect password');
+    expect(result).toEqual(mockUsers);
+    expect(prismaMock.users.findMany).toHaveBeenCalled();
   });
+
+  it('should create a new user', async () => {
+    const mockUser = { username: 'Bob' };
+    prismaMock.users.create.mockResolvedValue(mockUser);
+
+    const result = await UserModel.create(mockUser);
+
+    expect(result).toEqual(mockUser);
+    expect(prismaMock.users.create).toHaveBeenCalledWith({ data: mockUser });
+  });
+
+  // it('should update a user', async () => {
+  //   const data = { username: 'Charlie' };
+  //   const id = 1;
+  //   const updatedUser = { id: 1, username: 'Charlie' };
+  //   prismaMock.users.update.mockResolvedValue(updatedUser);
+
+  //   const result = await UserModel.update(data, id);
+
+  //   expect(result).toEqual(updatedUser);
+  //   expect(prismaMock.users.update).toHaveBeenCalledWith({
+  //     where: { id },
+  //     data,
+  //   });
+  // });
+
+  // it('should delete a user', async () => {
+  //   const id = 1;
+  //   const deletedUser = { id: 1 };
+  //   prismaMock.users.delete.mockResolvedValue(deletedUser);
+
+  //   const result = await UserModel.delete(id);
+
+  //   expect(result).toEqual(deletedUser);
+  //   expect(prismaMock.users.delete).toHaveBeenCalledWith({ where: { id } });
+  // });
 });
+
+
+
+
+
