@@ -2,16 +2,17 @@ doctype html
 html
   head
     title Sign In
-    //link(rel="stylesheet", href="/styles/style.css")   // Lien vers le fichier CSS
-    script(src="../../main.js")                      // Lien vers le fichier JavaScript
+    //-link(rel="stylesheet", href="../../public/styles/login.css")  
+    style 
+      include ../../public/styles/login.css                    
   body
     .left-side
     .right-side
       h1 Sign In
       .input-container
-        input(type="text" placeholder="Username or Email" id="username")
+        input(type="text" placeholder="Username or Email" id="username" class = "inputLogin")
       .input-container
-        input(type="password" placeholder="Password" id="password")
+        input(type="password" placeholder="Password" id="password" class = "inputLogin")
       .remember-forgot
         label
           input(type="checkbox" id="rememberMe")
@@ -21,3 +22,5 @@ html
       .create-account
         p New here? 
         a(href="#") Create an account
+      .divImg
+        img(src="/public/images/connexionImg.jpg", alt="connexion Image")
