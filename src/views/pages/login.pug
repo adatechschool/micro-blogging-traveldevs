@@ -2,16 +2,15 @@ doctype html
 html
   head
     title Sign In
-    //link(rel="stylesheet", href="/styles/style.css")   // Lien vers le fichier CSS
-    script(src="../../main.js")                      // Lien vers le fichier JavaScript
+    script 
+      include ../../main.js
   body
-    .left-side
-    .right-side
+    form(action="/login" method="POST")
       h1 Sign In
       .input-container
-        input(type="text" placeholder="Username or Email" id="username")
+        input(type="email" name="email" placeholder="Username or Email" id="username" value="email" )
       .input-container
-        input(type="password" placeholder="Password" id="password")
+        input(type="password" name="password" placeholder="Password" id="password" value="password")
       .remember-forgot
         label
           input(type="checkbox" id="rememberMe")
