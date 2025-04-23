@@ -28,12 +28,6 @@ app.use(express.json());
 app.use(express.static('public'))
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-<<<<<<< HEAD
-=======
-
-// Bien configurer le dossier public
-app.use(express.static(path.join(__dirname, 'public')));
->>>>>>> main
 
 app.use(user);
 app.use(posts);
