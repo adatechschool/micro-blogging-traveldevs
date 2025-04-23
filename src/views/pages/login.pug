@@ -2,15 +2,13 @@ doctype html
 html
   head
     title Sign In
-    script 
-      include ../../main.js
   body
     form(action="/login" method="POST")
       h1 Sign In
       .input-container
-        input(type="email" name="email" placeholder="Username or Email" id="username" value="email" )
+        input(type="text" placeholder="Username or Email" id="username" class = "inputLogin")
       .input-container
-        input(type="password" name="password" placeholder="Password" id="password" value="password")
+        input(type="password" placeholder="Password" id="password" class = "inputLogin")
       .remember-forgot
         label
           input(type="checkbox" id="rememberMe")
@@ -20,3 +18,5 @@ html
       .create-account
         p New here? 
         a(href="#") Create an account
+      .divImg
+        img(src="/public/images/connexionImg.jpg", alt="connexion Image")

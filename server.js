@@ -2,9 +2,17 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 
+import path from 'path';
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+
 import { user } from './src/routes/userRoute.js';
 import { posts } from './src/routes/postRoute.js';
 import { auth } from './src/routes/authRoute.js';
+
+
 
 const app = express();
 dotenv.config();
@@ -17,8 +25,15 @@ app.set('view engine', 'pug');
 // app.use('/static', express.static('public'));
 
 app.use(express.json());
+app.use(express.static('public'))
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
+<<<<<<< HEAD
+=======
+
+// Bien configurer le dossier public
+app.use(express.static(path.join(__dirname, 'public')));
+>>>>>>> main
 
 app.use(user);
 app.use(posts);
