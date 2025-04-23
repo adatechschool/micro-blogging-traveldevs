@@ -23,14 +23,15 @@ app.set('view engine', 'pug');
 // app.use(express.static('css'));
 //app.use(express.static('pages'));
 // app.use('/static', express.static('public'));
+app.use(express.static('src/public'));
 
 app.use(express.json());
-app.use(express.static('public'))
+// app.use(express.static('public/images'))
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 
 // Bien configurer le dossier public
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(user);
 app.use(posts);
