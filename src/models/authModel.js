@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-
+import { PasswordUtils } from '../utils/passwordHasing.js';
 const prisma = new PrismaClient({
     log: ["query"]
 });
@@ -15,9 +15,9 @@ export const AuthModel = {
                     ]
                 }
             });
-
+            
             if (!user) {
-                throw new Error("User not found");
+                return {success: false, message: "User not found"};
             }
 
             switch (await PasswordUtils.verifyPassword(data.password, user.password)) {
