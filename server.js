@@ -12,8 +12,13 @@ dotenv.config();
 app.set('views', './src/views/pages');
 app.set('view engine', 'pug');
 
+// app.use(express.static('css'));
+//app.use(express.static('pages'));
+// app.use('/static', express.static('public'));
+
 app.use(express.json());
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(user);
 app.use(posts);
