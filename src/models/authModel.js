@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { PasswordUtils } from '../utils/passwordHasing.js';
 
 const prisma = new PrismaClient({
     log: ["query"]
