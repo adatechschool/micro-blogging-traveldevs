@@ -4,12 +4,20 @@ export const AuthController = {
         try {
             console.log(req.body);
             
+<<<<<<< HEAD
             if (!AuthModel.login(req.body)) {
                 res.json({succes: false})
                 return new Error("Fatale error");
             } else {
                 res.json({succes: true});
             }
+=======
+            //if (!AuthModel.login(req.body)) {
+            //    res.json({succes: false})
+            //    return new Error("unable to connect");
+            //}
+            //res.json({succes: true});
+>>>>>>> brancheFontConnexion
         } catch (error) {
             console.error(error);
         }
