@@ -1,12 +1,11 @@
 doctype html
 html
   head
-    title Sign In
+    title Globe Link
     style 
       include ../../public/styles/post.css
+    link(rel="stylesheet", href="../../public/styles/post.css")
   body
-  .bodyLogin
-    .Navbar
-        .divIconMenu 
-            img(src="images/iconMenu.png", alt="")
-
+    each post in posts
+      p= post.title
+      p= post.content
