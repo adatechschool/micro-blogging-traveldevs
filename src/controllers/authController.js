@@ -8,8 +8,9 @@ export const AuthController = {
             console.error(error);
         }            
     },
-
+    
     displayMainPage: async (req, res)=> {
         res.render("login.pug");
-    }
+    },
+    
 }
