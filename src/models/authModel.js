@@ -12,7 +12,7 @@ export const AuthModel = {
             const user = await prisma.users.findFirst({
                 where: {
                     OR: [
-                        { email: data.emailorusername },
+                        { email: data.email },
                         { username: data.username }
                     ]
                 }

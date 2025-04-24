@@ -1,8 +1,19 @@
+// const test = {
+//     email : "toto@toto.com",
+//     password : "toto"
+// }
+
 export const isEmail = (entry) => {
-    let nameInput = "";
-    if (entry.match(/@/)) {
-        return nameInput = "email";
+    const email = entry.email;
+    const password = entry.password;
+    if (email.match(/@/)) {
+        return entry;
     } else {
-        return nameInput = "username"
+        return {
+            username : email,
+            password : password
+        }
     }
-}
+};
+
+// console.log (isEmail(test))
