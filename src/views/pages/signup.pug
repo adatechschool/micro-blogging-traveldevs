@@ -1,0 +1,25 @@
+doctype html
+html
+  head
+    title Sign Up
+    style 
+      include ../../public/styles/login.css
+  body
+  .bodyLogin
+    .divImg
+        img(class = "imgAcceuille" src="/images/connexionImg.jpg", alt="connexion Image")
+    .formBody
+    form(action="/signup1" method="POST")
+      .divTitre 
+          h1 Sign Up
+      .input-container
+        input(type="text" name = "username" placeholder="Username*" id="username" class = "inputLogin" )
+      .input-container
+        input(type="text" name = "email" placeholder="Email*" id="username" class = "inputLogin" )
+      .input-container
+        input(type="password" name = "password" placeholder="Password*" id="password" class = "inputLogin")
+      .remember-forgot
+      p
+        button(type="submit" class="sign-in-btn" id="signInBtn") Sign Up
+
+      

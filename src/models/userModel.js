@@ -49,6 +49,7 @@ export const UserModel = {
                     username: data.username,
                     email: data.email,
                     password: hashedPassword
+                    //password: data.password
                 }
             });
 

@@ -1,4 +1,52 @@
 .inputLogin{
+    width: 25rem;
+    height: 3rem;
     border: solid black;
     border-radius: 2rem;
+    margin-bottom: 1rem;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.2rem;
+}
+body{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+}
+.divImg{
+    background-image: url("/src/public/images/connexionImg.jpg");
+}
+.imgAcceuille{
+    height: 50rem;
+    width: 60rem;
+}
+.bodyLogin{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.formBody{
+    margin-left: 4rem;
+}
+.remember-forgot{
+    display: flex;
+    justify-content: space-between;
+}
+.create-account{
+    display: flex
+}
+.forgotPassword{
+    display: flex;
+    justify-content: end;
+}
+.sign-in-btn{
+    width: 25rem;
+    height: 3rem;
+    font-size: 1.2rem;
+    color: white;
+    border-radius: 2rem;
+    border: none;
+    background-color: #4a8133;
+}
+.divTitre{
+    margin-bottom: 3rem;
 }

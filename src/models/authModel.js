@@ -33,4 +33,22 @@ export const AuthModel = {
             throw error;
         }
     },
+    //   createUser: async (data) => {
+    //     try {
+    //         const result = await prisma.users.create({
+    //             data: {
+    //                 username: data.username,
+    //                 email: data.email,
+    //                 password: data.password
+    //             }
+    //         });
+            
+    //         if(!result){
+    //             throw new Error("impossible d'ajouter user");
+    //         }
+    //         return result;
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // }
 }

@@ -1,6 +1,9 @@
 import { UserModel } from "../models/userModel.js";
 
 export const UserController = {
+    displaySignUpPage: async(req, res)=>{
+        res.render("signup.pug");
+    },
     getUserById: async (id) => {
         try {            
             return await UserModel.findById(id);
@@ -23,7 +26,10 @@ export const UserController = {
 
     createUser: async (req, res) => {
         try {
-            return res.json(await UserModel.create(req,body));
+            const { username, email, password } = req.body;
+            console.log(req.body)
+            const newUser = await UserModel.create({ username, email, password });
+            return res.json(newUser)
         } catch (error) {
             console.error(error);
         }
