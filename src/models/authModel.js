@@ -7,10 +7,12 @@ const prisma = new PrismaClient({
 export const AuthModel = {
     login: async (data) => {
         try {
+            console.log(data);
+            
             const user = await prisma.users.findFirst({
                 where: {
                     OR: [
-                        { email: data.email },
+                        { email: data.emailorusername },
                         { username: data.username }
                     ]
                 }

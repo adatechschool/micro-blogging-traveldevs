@@ -6,9 +6,9 @@ html
     form(action="/login" method="POST")
       h1 Sign In
       .input-container
-        input(type="text" placeholder="Username or Email" id="username" class = "inputLogin")
+        input(type="text" name="email" placeholder="Username or Email" id="username" class = "inputLogin" value="hey")
       .input-container
-        input(type="password" placeholder="Password" id="password" class = "inputLogin")
+        input(type="password" name="password" placeholder="Password" id="password" class = "inputLogin")
       .remember-forgot
         label
           input(type="checkbox" id="rememberMe")

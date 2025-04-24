@@ -1,4 +1,5 @@
 import { AuthModel } from "../models/authModel.js";
+import { isEmail } from "../utils/authUtil.js";
 
 export const AuthController = {
     login: async (req, res) => {
