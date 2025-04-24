@@ -4,6 +4,8 @@ html
     title Sign In
     style 
       include ../../public/styles/login.css
+    script
+      include ../../main.js
   body
   .bodyLogin
     .divImg
@@ -16,6 +18,7 @@ html
         input(type="text" name="email" placeholder="Username or Email" id="username" class = "inputLogin")
       .input-container
         input(type="password" name="password" placeholder="Password" id="password" class = "inputLogin")
+        p #{message}
       .remember-forgot
       label
         input(type="checkbox" id="rememberMe")

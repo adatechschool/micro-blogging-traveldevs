@@ -4,7 +4,11 @@ import { isEmail } from "../utils/authUtil.js";
 export const AuthController = {
     login: async (req, res) => {
         try {
-            res.json(await AuthModel.login(isEmail(req.body)));
+            const result = await AuthModel.login(isEmail(req.body));            
+            res.render("login", {
+                message: result.message
+            });
+
         } catch (error) {
             console.error(error);
         }            
@@ -14,4 +18,7 @@ export const AuthController = {
         res.render("login.pug");
     },
     
+    verify: async (param) => {
+
+    }
 }
