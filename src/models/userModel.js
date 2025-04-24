@@ -7,6 +7,26 @@ const prisma = new PrismaClient({
 
 
 export const UserModel = {
+    find: async (data) => {
+        try {
+            const user = await prisma.users.findFirst({
+                where: {
+                    OR: [
+                        { email: data.email },
+                        { username: data.username }
+                    ]
+                }
+            }); 
+            if (!user) {
+                return false
+            } else {
+                return true
+            }
+        } catch(error) {
+            console.error(error)
+        }
+    },
+
     findById: async (id) => {
         try {
             const result = await prisma.users.findUnique({

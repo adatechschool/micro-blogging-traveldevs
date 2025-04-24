@@ -26,10 +26,23 @@ export const UserController = {
 
     createUser: async (req, res) => {
         try {
-            const { username, email, password } = req.body;
-            console.log(req.body)
-            const newUser = await UserModel.create({ username, email, password });
-            return res.json(newUser)
+            if (! await UserModel.find(req.body)) {
+                await UserModel.create(req.body)
+            } else {
+                return {
+                    success : false,
+                    message : "⚠️ You're already signed up !"
+                }
+            }
+            // if (!user) {
+            //     await UserModel.create(req.body);
+            //     res.render('/login')
+            // } else {
+            //     return {
+            //         success : false,
+            //         message : "⚠️ Vous êtes déjà inscrit !"
+            //     }
+            //  }
         } catch (error) {
             console.error(error);
         }
