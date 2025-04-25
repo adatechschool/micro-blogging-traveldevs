@@ -16,10 +16,9 @@ export const PostController =  {
 
     getAllPosts : async (req, res) => {
         try {
-            const posts = await PostModel.findAll()
-            console.log("liste des posts", posts)
+            const posts = await PostModel.findAll();
             // postView.displayMainPage(card(result))
-            res.render("post.pug", {posts})
+            res.render("post.pug", {posts: posts})
             //return res.json(posts)
         } catch (error) {
             console.error(error)

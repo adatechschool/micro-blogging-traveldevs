@@ -13,13 +13,13 @@ html
       .divTitre
           h1 Sign In
       .input-container
-        input(type="text" name="email" placeholder="Username or Email" id="username" class = "inputLogin")
+        input(type="text" name="email" placeholder="Username or Email" id="username" class = "inputLogin" required)
       .input-container
-        input(type="password" name="password" placeholder="Password" id="password" class = "inputLogin")
+        input(type="password" name="password" placeholder="Password" id="password" class = "inputLogin" required)
         p #{message}
       .remember-forgot
       label
-        input(type="checkbox" id="rememberMe")
+        input(type="checkbox" id="rememberMe" required)
         label Remember me
           
         a(class = "forgotPassword" href="#") Forgot password?
