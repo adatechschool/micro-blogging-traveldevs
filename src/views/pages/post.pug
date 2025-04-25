@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Globe Link | Travel Blog
+    style
+      include ../../public/styles/post.css
+    //link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+  body
+    header.header
+      .nav-container
+        a.logo(href="/posts") Globe Link
+
+    .main-container
+      section.new-post-section
+        .new-post-form
+          h3.form-title Write your post!!
+          input.post-input(type="text", placeholder="Title")
+          textarea.post-textarea(placeholder="Content...")
+          button.post-button Post
+
+      section.blogs-container
+        h2.section-title Blogs
+        
+        each post in posts
+          .post
+            .post-header
+              .post-author
+                span.author-name= post.user.username
+              h3.post-title= post.title
+            
+            .post-content
+              p= post.content

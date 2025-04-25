@@ -1,0 +1,37 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Sign In | Globe Link
+    style
+      include ../../public/styles/login.css
+    //link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+  body
+    .bodyLogin
+      .divImg
+        img(class="imgAcceuille" src="/images/connexionImg.jpg", alt="Travel image showing map and planning")
+      .formBody
+        form(action="/login" method="POST")
+          .divTitre
+            h1 Sign In
+            
+            p.message #{message}
+          
+          .input-container
+            input(type="text" name="email" placeholder="Username or email" id="username" class="inputLogin" required)
+          
+          .input-container
+            input(type="password" name="password" placeholder="Password" id="password" class="inputLogin" required)
+          
+          .remember-forgot
+            label
+              input(type="checkbox" id="rememberMe")
+              span Remember me
+            a(class="forgotPassword" href="#") Forgot password?
+          
+          button(type="submit" class="sign-in-btn" id="signInBtn") Sign In
+          
+          .create-account
+            p New here? 
+            a(href="/signup") Create an account

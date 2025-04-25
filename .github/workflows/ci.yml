@@ -1,0 +1,32 @@
+name: CI Workflow
+
+on:
+  push:
+    branches:
+      - main  # S'exécute lors d'un push sur la branche 'main'
+  pull_request:
+    branches:
+      - main  # S'exécute lors d'une pull request vers la branche 'main'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Utiliser l'OS Ubuntu pour exécuter les actions
+
+    steps:
+      # Étape 1 : Checkout le code du dépôt
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Étape 2 : Configurer Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'  # Spécifie la version de Node.js à utiliser
+
+      # Étape 3 : Installer les dépendances
+      - name: Install dependencies
+        run: npm install
+
+      # Étape 4 : Exécuter les tests avec Jest
+      - name: Run tests
+        run: npm test  # Lance la commande 'npm test' pour exécuter Jest
