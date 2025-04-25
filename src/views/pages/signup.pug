@@ -4,6 +4,8 @@ html
     title Sign Up
     style 
       include ../../public/styles/login.css
+      //- script
+      //-   include ../../main.js
   body
   .bodyLogin
     .divImg
@@ -13,13 +15,17 @@ html
       .divTitre 
           h1 Sign Up
       .input-container
-        input(type="text" name = "username" placeholder="Username*" id="username" class = "inputLogin" )
+        input(type="text" name = "username" placeholder="Username*" id="username" class = "inputLogin" required)
       .input-container
-        input(type="text" name = "email" placeholder="Email*" id="username" class = "inputLogin" )
+        input(type="text" name = "email" placeholder="Email*" id="username" class = "inputLogin" required)
       .input-container
-        input(type="password" name = "password" placeholder="Password*" id="password" class = "inputLogin")
+        input(type="password" name = "password" placeholder="Password*" id="password" class = "inputLogin" required)
+        p #{message}
       .remember-forgot
       p
         button(type="submit" class="sign-in-btn" id="signInBtn") Sign Up
-
-      
+  script.
+    document.addEventListener('DOMContentLoaded', function() {
+      if (!#{!!succces}) return;
+      alert("Compte bien créé !");
+    });

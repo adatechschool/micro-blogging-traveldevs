@@ -26,23 +26,18 @@ export const UserController = {
 
     createUser: async (req, res) => {
         try {
-            if (! await UserModel.find(req.body)) {
-                await UserModel.create(req.body)
-            } else {
-                return {
-                    success : false,
-                    message : "⚠️ You're already signed up !"
-                }
+            const result = await UserModel.find(req.body);
+            console.log(result);
+            
+
+            if (result) {
+                await UserModel.create(req.body);
+                res.render("login.pug", {success: true});
+            } else if (!result) {
+                res.render("signup", {
+                    message: result.message
+                });
             }
-            // if (!user) {
-            //     await UserModel.create(req.body);
-            //     res.render('/login')
-            // } else {
-            //     return {
-            //         success : false,
-            //         message : "⚠️ Vous êtes déjà inscrit !"
-            //     }
-            //  }
         } catch (error) {
             console.error(error);
         }

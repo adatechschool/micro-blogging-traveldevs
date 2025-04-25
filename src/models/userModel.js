@@ -17,11 +17,13 @@ export const UserModel = {
                     ]
                 }
             }); 
+
             if (!user) {
-                return false
+                return {success: true, message: "Welcome to the trip"};
             } else {
-                return true
+                return {sucess: false, message: "⚠️ You're already signed up !"};
             }
+
         } catch(error) {
             console.error(error)
         }
@@ -69,7 +71,6 @@ export const UserModel = {
                     username: data.username,
                     email: data.email,
                     password: hashedPassword
-                    //password: data.password
                 }
             });
 
