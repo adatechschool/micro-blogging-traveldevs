@@ -29,11 +29,12 @@ export const UserController = {
             const result = await UserModel.find(req.body);
             console.log(result);
             
-
-            if (result) {
-                await UserModel.create(req.body);
-                res.render("login.pug", {success: true});
-            } else if (!result) {
+            if (result.success) {
+                const created = await UserModel.create(req.body);
+                if (created) {
+                    res.render("login.pug", {success: true, message: "Account created succesfully please type your email and passsword to connect"});
+                }   
+            } else if (!result.success) {
                 res.render("signup", {
                     message: result.message
                 });

@@ -5,8 +5,9 @@ import express from 'express';
 
 const router = express.Router();
 
-router.get('/login', AuthController.displayMainPage);
+router.get('/', AuthController.displayMainPage);
 router.post('/login', AuthController.login);
+
 router.get('/signup', UserController.displaySignUpPage);
 router.post('/signup1', UserController.createUser);
 

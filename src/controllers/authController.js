@@ -6,14 +6,12 @@ export const AuthController = {
     login: async (req, res) => {
         try {
             const result = await AuthModel.login(isEmail(req.body));
-            if (!result) {
+            if (!result.success) {
                 res.render("login", {
                     message: result.message
                 });
             } else {
                 res.redirect("/posts");
-                // const data = await PostModel.findAll();
-                // res.render('post');
             }            
             
 

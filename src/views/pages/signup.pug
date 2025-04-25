@@ -1,31 +1,31 @@
 doctype html
-html
+html(lang="es")
   head
-    title Sign Up
-    style 
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Sign Up | Globe Link
+    style
       include ../../public/styles/login.css
-      //- script
-      //-   include ../../main.js
+    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
   body
-  .bodyLogin
-    .divImg
-        img(class = "imgAcceuille" src="/images/connexionImg.jpg", alt="connexion Image")
-    .formBody
-    form(action="/signup1" method="POST")
-      .divTitre 
-          h1 Sign Up
-      .input-container
-        input(type="text" name = "username" placeholder="Username*" id="username" class = "inputLogin" required)
-      .input-container
-        input(type="text" name = "email" placeholder="Email*" id="username" class = "inputLogin" required)
-      .input-container
-        input(type="password" name = "password" placeholder="Password*" id="password" class = "inputLogin" required)
-        p #{message}
-      .remember-forgot
-      p
-        button(type="submit" class="sign-in-btn" id="signInBtn") Sign Up
-  script.
-    document.addEventListener('DOMContentLoaded', function() {
-      if (!#{!!succces}) return;
-      alert("Compte bien créé !");
-    });
+    .bodyLogin
+      .divImg
+        img(class="imgAcceuille" src="/images/connexionImg.jpg", alt="Travel image showing map and planning")
+      .formBody
+        form(action="/signup1" method="POST")
+          .divTitre
+            h1 Sign UP
+          
+          if message
+            p.message #{message}
+          
+          .input-container
+            input(type="text" name="username" placeholder="Username*" id="username" class="inputLogin" required)
+          
+          .input-container
+            input(type="email" name="email" placeholder="E-mail*" id="email" class="inputLogin" required)
+          
+          .input-container
+            input(type="password" name="password" placeholder="Password*" id="password" class="inputLogin" required)
+          
+          button(type="submit" class="sign-in-btn" id="signUpBtn") Sign Up

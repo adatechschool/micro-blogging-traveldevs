@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins"]
 }
 
 datasource db {
@@ -13,6 +14,7 @@ model posts {
   title   String? @db.VarChar(50)
   content String? @db.VarChar
   user_id Int?
+  user    users?  @relation(fields: [user_id], references: [id])
 }
 
 model users {
@@ -21,4 +23,5 @@ model users {
   email           String? @db.VarChar
   password        String? @db.VarChar(255)
   profile_picture String? @db.VarChar
+  posts           posts[]
 }

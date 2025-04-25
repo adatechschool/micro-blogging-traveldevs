@@ -82,5 +82,22 @@ export const PostModel = {
     //     } catch (error) {
     //         console.error(error);
     //     }
-    // }
+    // },
+
+    joinPost: async (req, res) => {
+        try {
+            const result = await prisma.posts.findMany({
+                include: {
+                  user: {
+                    select: {
+                      username: true
+                    }
+                  }
+                }
+              });
+            return result;
+        } catch (error) {
+            console.error(error);
+        }
+    }
 }

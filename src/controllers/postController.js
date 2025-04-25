@@ -16,10 +16,8 @@ export const PostController =  {
 
     getAllPosts : async (req, res) => {
         try {
-            const posts = await PostModel.findAll();
-            // postView.displayMainPage(card(result))
-            res.render("post.pug", {posts: posts})
-            //return res.json(posts)
+            const posts = await PostModel.joinPost();
+            res.render("post.pug", {posts: posts});
         } catch (error) {
             console.error(error)
         }
@@ -45,7 +43,7 @@ export const PostController =  {
         } catch (error) {
             console.error(error)
         }
-    }
+    },
 }
 
 

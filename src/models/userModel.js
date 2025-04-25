@@ -76,9 +76,9 @@ export const UserModel = {
 
             if (!result) {
                 throw new Error("Unable to create user");
+            } else {
+                return {success: true, message: "Account created succesfully"};
             }
-
-            return result;
         } catch (error) {
             throw error;
         }
